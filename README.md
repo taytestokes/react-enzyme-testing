@@ -7,7 +7,9 @@ Enzyme's API is meant to be intuitive and flexible by mimicking jQuery's API for
 Enzyme is unopinionated regarding which test runner or assertion library you use, and should be compatible with all major test runners and assertion libraries out there. In this case, we will be using Jest since it comes right out of the box with Create React App.
 
 If you are unfamiliar with with Jest, check out these resources:
+
 [Jest Documentation](https://jestjs.io/)
+
 [Tayte's Repo for Jest Testing](https://github.com/Tstokes9328/jest-testing)
 
 Enzyme is not included in Create React App so we will need to install it ourselves.
@@ -166,3 +168,4 @@ The `ReactWrapper` has a ton of built in methods to manipulate the test of the C
 ## Resources Used
 [DevHints](https://devhints.io/enzyme)
 [Enzyme Docs](https://airbnb.io/enzyme/)
+[Ross Bulats Medium Article](https://medium.com/@rossbulat/testing-in-react-with-jest-and-enzyme-an-introduction-99ce047dfcf8)
