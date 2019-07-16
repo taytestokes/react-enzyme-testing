@@ -31,16 +31,36 @@ configure({adapter: new Adapter()});
 
 Since we will be using Jest to help assist our Ezyme tests, there are a few different ways we can go about setting up our file structure following the Jest patterns in order for Jest to pick up on our tests.
 
-1. Files end with a suffix of `.test.js` or `.spec.js`
+### Files end with a suffix of `.test.js` or `.spec.js`
 
-This is a pattern we can follow to create a test file for a specific component and will reside in the same directory as the component file we are testing.
+This is a pattern we can follow to create a test file for a specific component and will reside in the same directory as the component file we are testing. The folder structure of the application would look like so:
 
 ```javascript
 components
-+-------- Navbar
-         +------ Navbar.js
-         +------ Navbar.test.js
-+-------- Footer
-         +------ Footer.js
-         +------ Footer.test.js
++-- Navbar
+    +-- Navbar.js
+    +-- Navbar.css
+    +-- Navbar.test.js
++-- Footer
+    +-- Footer.js
+    +-- Footer.css
+    +-- Footer.test.js
+```
+
+### House all test files inside of a `__tests__` folder
+
+This pattern is where we will create a folder named `__tests__` inside the root of the `src` folder and all of the files inside this folder will be read as a test folder. This would make your folder structure to look like the following:
+
+```javascript
+src
++-- compomnents
+    +-- Navbar
+        +-- Navbar.js
+        +-- Navbar.css
+    +-- Footer
+        +-- Footer.js
+        +-- Footer.css
++-- __tests__
+    +-- Navbar.js
+    +-- Footer.js
 ```
