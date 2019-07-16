@@ -119,3 +119,50 @@ The shallow wrapper that gets returned from `shallow` has a long list of it's ow
 
 You can find a detailed list of each method [here](https://airbnb.io/enzyme/docs/api/shallow.html)
 
+### Full DOM Rendering
+
+Full DOM rendering is ideal for use cases where you have components that may interact with DOM APIs or need to test components that are wrapped in higher order components.
+
+Full DOM rendering requires that a full DOM API be available at the global scope. This means that it must be run in an environment that at least “looks like” a browser environment. If you do not want to run your tests inside of a browser, the recommended approach to using mount is to depend on a library called jsdom which is essentially a headless browser implemented completely in JS.
+
+Here is a simple example of Full DOM Rendering testing:
+
+```javascript
+import { mount } from 'enzyme';
+import sinon from 'sinon';
+import Foo from './Foo';
+
+describe('<Foo />', () => {
+  it('calls componentDidMount', () => {
+    sinon.spy(Foo.prototype, 'componentDidMount');
+    const wrapper = mount(<Foo />);
+    expect(Foo.prototype.componentDidMount).to.have.property('callCount', 1);
+  });
+
+  it('allows us to set props', () => {
+    const wrapper = mount(<Foo bar="baz" />);
+    expect(wrapper.props().bar).to.equal('baz');
+    wrapper.setProps({ bar: 'foo' });
+    expect(wrapper.props().bar).to.equal('foo');
+  });
+
+  it('simulates click events', () => {
+    const onButtonClick = sinon.spy();
+    const wrapper = mount((
+      <Foo onButtonClick={onButtonClick} />
+    ));
+    wrapper.find('button').simulate('click');
+    expect(onButtonClick).to.have.property('callCount', 1);
+  });
+});
+```
+
+The `mount` function takes in a React Component and mounts the Component and all Sub-Components and return the Component tree starting at the Component that is passed in. This return value is usally refered to as the `ReactWrapper`.
+
+The `ReactWrapper` has a ton of built in methods to manipulate the test of the Component Tree. Check them out [here](https://airbnb.io/enzyme/docs/api/mount.html)
+
+---
+
+## Resources Used
+[DevHints](https://devhints.io/enzyme)
+[Enzyme Docs](https://airbnb.io/enzyme/)
