@@ -1,12 +1,16 @@
 # React Testing With Enzyme
 
-Enzyme is a testing utility package developed by AirBnB that makes testing React components easier.
+Enzyme is a JavaScript Testing utility for React that makes it easier to test your React Components' output. You can also manipulate, traverse, and in some ways simulate runtime given the output.
+
+Enzyme's API is meant to be intuitive and flexible by mimicking jQuery's API for DOM manipulation and traversal.
+
+Enzyme is unopinionated regarding which test runner or assertion library you use, and should be compatible with all major test runners and assertion libraries out there. In this case, we will be using Jest since it comes right out of the box with Create React App.
 
 Enzyme is not included in Create React App so we will need to install it ourselves.
 
 ## Setup
 
-In the root level of your project, run the terminal command:
+We first need to install Enzyme and the Enzyme React Adapter. In the root level of your project, run the terminal command:
 
 ```bash
 $ npm install --save-dev enzyme enzyme-adapter-react-16 react-test-renderer
@@ -21,4 +25,22 @@ import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 configure({adapter: new Adapter()});
+```
+
+## Basic Usage
+
+Since we will be using Jest to help assist our Ezyme tests, there are a few different ways we can go about setting up our file structure following the Jest patterns in order for Jest to pick up on our tests.
+
+1. Files end with a suffix of `.test.js` or `.spec.js`
+
+This is a pattern we can follow to create a test file for a specific component and will reside in the same directory as the component file we are testing.
+
+```javascript
+components
++-------- Navbar
+         +------ Navbar.js
+         +------ Navbar.test.js
++-------- Footer
+         +------ Footer.js
+         +------ Footer.test.js
 ```
